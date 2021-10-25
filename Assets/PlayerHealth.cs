@@ -9,7 +9,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     private UIController ui;
 
-    private int health = 100, mana = 100, xp = 0;
+    public int health = 100, mana = 100, xp = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,12 +21,8 @@ public class PlayerHealth : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-       // if(mana < 100)
-        {
-            mana += Time.deltaTime;
-            ui.SetManaSlider(mana);
-        }
+    {     
+        ui.SetManaSlider(mana);
     }
 
     public void ChangeHealth(int byAmount)
@@ -48,4 +45,5 @@ public class PlayerHealth : MonoBehaviour
         xp = byAmount;
         ui.SetXPSlider(xp);
     }
+
 }

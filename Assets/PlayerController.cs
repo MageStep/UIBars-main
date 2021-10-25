@@ -26,9 +26,10 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //this should go into an input manager
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        if(Input.GetKeyDown(KeyCode.Mouse0) && hp.mana >= 10)
         {
             Fire();
+            hp.mana -= 10;
         }
     }
 
@@ -46,5 +47,27 @@ public class PlayerController : MonoBehaviour
         {
             hp.ChangeHealth(-10);
         }
+
+        if(other.gameObject.CompareTag("HealthPotion"))
+        {
+            hp.ChangeHealth(25);
+            Destroy(other.gameObject);
+            if(hp.health >= 100)
+            {
+                hp.health = 100;
+            }
+        }
+
+        if(other.gameObject.CompareTag("ManaPotion"))
+        {
+            hp.mana += 25;
+            Destroy(other.gameObject);
+            if(hp.mana >= 100)
+            {
+                hp.mana = 100;
+            }
+        }
     }
+
+
 }
